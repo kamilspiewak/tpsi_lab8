@@ -3,6 +3,7 @@ package wizut.tpsi.calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,10 @@ public class CalculatorController {
     }
     
     @PostMapping("/add")
-    public String addNumbers(Model model, CalculatorForm form) {
+    public String addNumbers(Model model, CalculatorForm form, BindingResult binding) {
+        if(binding.hasErrors()){
+            return "add";
+        } 
         int result = calculatorService.add(form.getX(),form.getY());
         
         form.setOperation("+");
@@ -28,7 +32,10 @@ public class CalculatorController {
     }
 
     @PostMapping("/multiply")
-    public String multiplyNumbers(Model model, CalculatorForm form) {
+    public String multiplyNumbers(Model model, CalculatorForm form, BindingResult binding) {
+        if(binding.hasErrors()){
+            return "multiply";
+        } 
         int result = calculatorService.multiply(form.getX(), form.getY());
         
         form.setOperation("*");
@@ -37,7 +44,10 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculate")
-    public String doCalculations(Model model, CalculatorForm form) {
+    public String doCalculations(Model model, CalculatorForm form, BindingResult binding) {
+        if(binding.hasErrors()){
+            return "calculate";
+        } 
         int result = 0;
         switch(form.getOperation()) {
             case "+":

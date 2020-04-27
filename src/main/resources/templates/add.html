@@ -11,11 +11,16 @@
         <section layout:fragment="content">
         <div>
             <h2>Dodawanie</h2>
-            <form action="/add" method="post">
-                x = <input type="text" name="x" value="2" />
-                y = <input type="text" name="y" value="2" />
-                <input type="submit" value="Dodaj" />
-            </form>
+            <form action="/add" method="post" th:object="${calculatorForm}">
+    <p>x = <input type="text" th:field="*{x}" th:errorClass="error" />
+    <span th:if="${#fields.hasErrors('x')}" th:errors="*{x}">Błędne dane</span>
+    </p>
+    <p>y = <input type="text" th:field="*{y}" th:errorClass="error"/>
+    <span th:if="${#fields.hasErrors('y')}" th:errors="*{y}">Błędne dane</span>
+    </p>
+                <p> <input type="submit" value="Dodaj" /></p>
+   
+</form>
         </div>
         </section>
     </body>

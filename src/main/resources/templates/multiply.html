@@ -12,14 +12,16 @@
        
         <div>
             <h2>Mnożenie</h2>
-            <form action="/multiply" method="post">
-                x = <input type="text" name="x" value="2" />
-                y = <input type="text" name="y" value="2" />
-                <input type="submit" value="Pomnóż" />
+            <form action="/multiply" method="post" th:object="${calculatorForm}">
+                <p>x = <input type="text" th:field="*{x}" th:errorClass="error" />
+    <span th:if="${#fields.hasErrors('x')}" th:errors="*{x}">Błędne dane</span>
+    </p>
+    <p>y = <input type="text" th:field="*{y}" th:errorClass="error"/>
+    <span th:if="${#fields.hasErrors('y')}" th:errors="*{y}">Błędne dane</span>
+    </p>
+                <p><input type="submit" value="Pomnóż" /></p>
             </form>
         </div>
-        
-       
         </section>
     </body>
 </html>
