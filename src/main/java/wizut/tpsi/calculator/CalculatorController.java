@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CalculatorController {
     
+   private CalculatorService calculatorService;
+    
     @RequestMapping("/")
     public String home() {
         return "index";
@@ -14,7 +16,7 @@ public class CalculatorController {
     
     @RequestMapping("/add")
     public String addNumbers(Model model, CalculatorForm form) {
-        int result = form.getX() + form.getY();
+        int result = calculatorService.add(form.getX(),form.getY());
         
         form.setOperation("+");
         model.addAttribute("result", result);
@@ -23,7 +25,7 @@ public class CalculatorController {
 
     @RequestMapping("/multiply")
     public String multiplyNumbers(Model model, CalculatorForm form) {
-        int result = form.getX() * form.getY();
+        int result = calculatorService.multiply(form.getX(), form.getY());
         
         form.setOperation("*");
         model.addAttribute("result", result);
@@ -35,13 +37,13 @@ public class CalculatorController {
         int result = 0;
         switch(form.getOperation()) {
             case "+":
-                result = form.getX() + form.getY();
+                result = calculatorService.add(form.getX(), form.getY());
                 break;
             case "-":
-                result = form.getX() - form.getY();
+                result = calculatorService.subtract(form.getX(), form.getY());
                 break;
             case "*":
-                result = form.getX() * form.getY();
+                result = calculatorService.multiply(form.getX(), form.getY());
                 break;
         }
         
@@ -49,4 +51,5 @@ public class CalculatorController {
         
         return "result";
     }
+    
 }
