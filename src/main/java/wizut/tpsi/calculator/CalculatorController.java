@@ -1,12 +1,16 @@
 package wizut.tpsi.calculator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CalculatorController {
     
+    @Autowired
    private CalculatorService calculatorService;
     
     @RequestMapping("/")
@@ -14,7 +18,7 @@ public class CalculatorController {
         return "index";
     }
     
-    @RequestMapping("/add")
+    @PostMapping("/add")
     public String addNumbers(Model model, CalculatorForm form) {
         int result = calculatorService.add(form.getX(),form.getY());
         
@@ -23,7 +27,7 @@ public class CalculatorController {
         return "result";
     }
 
-    @RequestMapping("/multiply")
+    @PostMapping("/multiply")
     public String multiplyNumbers(Model model, CalculatorForm form) {
         int result = calculatorService.multiply(form.getX(), form.getY());
         
@@ -32,7 +36,7 @@ public class CalculatorController {
         return "result";
     }
 
-    @RequestMapping("/calculate")
+    @PostMapping("/calculate")
     public String doCalculations(Model model, CalculatorForm form) {
         int result = 0;
         switch(form.getOperation()) {
@@ -51,5 +55,20 @@ public class CalculatorController {
         
         return "result";
     }
+    
+    @GetMapping("/add")
+public String addForm(CalculatorForm form) {
+    return "add";
+}
+
+@GetMapping("/multiply")
+public String multiplyForm(CalculatorForm form) {
+    return "multiply";
+}
+
+@GetMapping("/calculate")
+public String calculateForm(CalculatorForm form) {
+    return "calculate";
+}
     
 }

@@ -5,10 +5,13 @@
  */
 package wizut.tpsi.calculator;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author Kamil
  */
+@Service
 public class CalculatorService {
     public int add(int a, int b) {
     return a + b;

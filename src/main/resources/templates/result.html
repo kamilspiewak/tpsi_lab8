@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
     <head>
         <title>MiniMatlab 0.1 alpha</title>
         <meta charset="UTF-8" />
     </head>
     <body>
+        <section layout:fragment="content">
         <h1>Wynik obliczeń</h1>
         <p th:object="${calculatorForm}">
             <span th:text="*{x}">2</span>
@@ -17,5 +20,6 @@
         <p>
             <a href="/">Fajnie było, jeszcze raz!</a>
         </p>
+        </section>
     </body>
 </html>

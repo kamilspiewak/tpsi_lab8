@@ -9,7 +9,14 @@
     </head>
     <body>
         <section layout:fragment="content">
-            <h1>Witamy!</h1>
+        <div>
+            <h2>Dodawanie</h2>
+            <form action="/add" method="post">
+                x = <input type="text" name="x" value="2" />
+                y = <input type="text" name="y" value="2" />
+                <input type="submit" value="Dodaj" />
+            </form>
+        </div>
         </section>
     </body>
 </html>
